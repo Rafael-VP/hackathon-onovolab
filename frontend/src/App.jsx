@@ -68,7 +68,7 @@ const AnalysisResult = ({ analysisData, error }) => {
                     <p>{analysisData.summary}</p>
                 </div>
                 <div className="analysis-breakdown">
-                    <h3>Detalhamento</h3>
+                    <h3>More details</h3>
                     <div className="breakdown-grid">
                         {Object.entries(analysisData.breakdown).map(([key, value]) => (
                             <div className="breakdown-item" key={key}>
@@ -101,7 +101,7 @@ const Projects = () => {
     }, 500);
   }, []);
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <p>Loading...</p>;
 
   return (
     <section id="projects" className="projects">
