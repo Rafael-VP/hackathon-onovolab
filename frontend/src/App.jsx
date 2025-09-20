@@ -1,10 +1,6 @@
-// --- IMPORTAÇÕES ATUALIZADAS ---
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// --- COMPONENTES ---
-
-// Seu Header personalizado (mantido)
 const Header = () => {
   return (
     <header className="header">
@@ -15,7 +11,6 @@ const Header = () => {
   );
 };
 
-// Seu Hero personalizado (mantido)
 const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   return (
     <section className="hero">
@@ -37,8 +32,6 @@ const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   );
 };
 
-// --- NOVO COMPONENTE QUE SUBSTITUI O 'RESULTADOBUSCA' ---
-// Ele sabe como ler e exibir o JSON da sua API Python
 const AnalysisResult = ({ analysisData, error }) => {
     if (error) {
         return <p className="error-message centralizado">Erro: {error}</p>;
@@ -87,15 +80,11 @@ const AnalysisResult = ({ analysisData, error }) => {
 };
 
 
-// Seu componente Projects, que agora serve como conteúdo inicial (mantido)
 const Projects = () => {
-  // A lógica de fetch foi mantida, caso você queira usar um json-server para exemplos.
-  // Se não precisar, pode remover a lógica e deixar um conteúdo estático.
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula um carregamento de exemplos ou instruções
     setTimeout(() => {
         setLoading(false);
     }, 500);
@@ -113,7 +102,6 @@ const Projects = () => {
   );
 };
 
-// Seu Footer personalizado (mantido)
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
@@ -124,10 +112,8 @@ const Footer = () => {
   );
 };
 
-// --- APP PRINCIPAL COM A LÓGICA CORRETA ---
 function App() {
   const [idBusca, setIdBusca] = useState('');
-  // Estado renomeado para refletir o que ele guarda: a análise
   const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
