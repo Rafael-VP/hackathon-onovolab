@@ -1,7 +1,9 @@
-import React from 'react';
-import './App.css'; // Vamos criar este arquivo para os estilos
+// --- IMPORTAÇÕES ATUALIZADAS ---
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
-// Componente Header (Cabeçalho)
+// --- COMPONENTES ---
+
 const Header = () => {
   return (
     <header className="header">
@@ -16,21 +18,32 @@ const Header = () => {
   );
 };
 
-// Componente Hero (Seção de Destaque)
-const Hero = () => {
+// --- COMPONENTE HERO MODIFICADO PARA INCLUIR A BUSCA ---
+// Hero agora recebe "props" (propriedades) do componente App para controlar a busca.
+const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   return (
     <section className="hero">
       <div className="hero-content">
         <h1>Olá, eu sou [Seu Nome]</h1>
         <p>Desenvolvedor(a) Web apaixonado(a) por criar soluções criativas e funcionais.</p>
-        <button className="cta-button">Veja meus trabalhos</button>
+        
+        {/* Formulário de busca foi movido para cá */}
+        <form onSubmit={onBuscaSubmit} className="hero-busca-form">
+          <input
+            type="text"
+            value={idBusca}
+            onChange={(e) => setIdBusca(e.target.value)}
+            placeholder="Buscar projeto por ID..."
+          />
+          <button type="submit" disabled={loading}>
+            {loading ? 'Buscando...' : 'Buscar'}
+          </button>
+        </form>
       </div>
     </section>
   );
 };
 
-// Componente para um único projeto
-// A "prop" `project` passa os dados para o componente
 const ProjectCard = ({ project }) => {
   return (
     <div className="project-card">
@@ -44,39 +57,58 @@ const ProjectCard = ({ project }) => {
   );
 };
 
+// --- NOVO COMPONENTE APENAS PARA EXIBIR O RESULTADO DA BUSCA ---
+const ResultadoBusca = ({ projeto, error }) => {
+    if (error) {
+        return <p className="error-message">Erro: {error}</p>;
+    }
+    if (!projeto) {
+        return null; // Não exibe nada se não houver projeto
+    }
+    return (
+        <section className="resultado-busca-container">
+            <h2>Projeto Encontrado</h2>
+            <div className="projeto-encontrado-card">
+                <h4>{projeto.title}</h4>
+                <p>{projeto.description}</p>
+                <a href={projeto.link} target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+            </div>
+        </section>
+    );
+};
 
-// Componente Projects (Lista de Projetos)
+
 const Projects = () => {
-  // Em um site real, esses dados viriam de uma API
-  const projectData = [
-    {
-      id: 1,
-      title: 'Sistema de E-commerce',
-      description: 'Plataforma completa de vendas online com carrinho de compras e integração de pagamento.',
-      imageUrl: 'https://via.placeholder.com/300x200.png?text=E-commerce',
-      link: '#',
-    },
-    {
-      id: 2,
-      title: 'Aplicativo de Tarefas',
-      description: 'Um app para organizar o dia a dia, com funcionalidades de adicionar, editar e remover tarefas.',
-      imageUrl: 'https://via.placeholder.com/300x200.png?text=App+de+Tarefas',
-      link: '#',
-    },
-    {
-      id: 3,
-      title: 'Landing Page Institucional',
-      description: 'Página de apresentação para uma startup de tecnologia, focada em conversão de leads.',
-      imageUrl: 'https://via.placeholder.com/300x200.png?text=Landing+Page',
-      link: '#',
-    },
-  ];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/projects');
+        if (!response.ok) {
+          throw new Error('Falha ao carregar os projetos.');
+        }
+        const data = await response.json();
+        setProjects(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  if (loading) return <p>Carregando projetos...</p>;
+  if (error) return <p>Erro ao carregar projetos: {error}</p>;
 
   return (
     <section id="projects" className="projects">
       <h2>Meus Projetos</h2>
       <div className="projects-grid">
-        {projectData.map(proj => (
+        {projects.map(proj => (
           <ProjectCard key={proj.id} project={proj} />
         ))}
       </div>
@@ -84,7 +116,6 @@ const Projects = () => {
   );
 };
 
-// Componente Footer (Rodapé)
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
@@ -95,15 +126,60 @@ const Footer = () => {
   );
 };
 
-
-// Componente Principal que reúne tudo
+// --- APP PRINCIPAL AGORA CONTROLA A LÓGICA DA BUSCA ---
 function App() {
+  // A lógica e os estados da busca foram "elevados" para o componente App
+  const [idBusca, setIdBusca] = useState('');
+  const [projetoEncontrado, setProjetoEncontrado] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleBusca = async (event) => {
+    event.preventDefault();
+    if (!idBusca.trim()) {
+        // Se a busca for vazia, limpamos o resultado e mostramos todos os projetos
+        setProjetoEncontrado(null);
+        setError(null);
+        return;
+    }
+    setLoading(true);
+    setError(null);
+    setProjetoEncontrado(null);
+    try {
+      const response = await fetch(`http://localhost:3001/projects/${idBusca}`);
+      if (!response.ok) {
+        throw new Error('Projeto não encontrado. Verifique o ID.');
+      }
+      const data = await response.json();
+      setProjetoEncontrado(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="App">
       <Header />
       <main>
-        <Hero />
-        <Projects />
+        {/* Passamos o estado e as funções para o Hero como props */}
+        <Hero 
+          idBusca={idBusca}
+          setIdBusca={setIdBusca}
+          onBuscaSubmit={handleBusca}
+          loading={loading}
+        />
+
+        {/* Renderização Condicional: 
+            Se houver um erro, mostra o erro.
+            Se houver um projeto encontrado, mostra o card de resultado.
+            Senão, mostra a lista completa de projetos.
+        */}
+        {error ? <p className="error-message centralizado">Erro: {error}</p> : (
+            projetoEncontrado ? <ResultadoBusca projeto={projetoEncontrado} /> : <Projects />
+        )}
+        
       </main>
       <Footer />
     </div>
