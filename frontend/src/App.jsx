@@ -1,10 +1,9 @@
-// --- IMPORTAÇÕES ATUALIZADAS ---
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
 // --- COMPONENTES ---
 
-// Seu Header personalizado (mantido)
+
 const Header = () => {
   return (
     <header className="header">
@@ -15,7 +14,7 @@ const Header = () => {
   );
 };
 
-// Seu Hero personalizado (mantido)
+
 const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   return (
     <section className="hero">
@@ -37,8 +36,6 @@ const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   );
 };
 
-// --- NOVO COMPONENTE QUE SUBSTITUI O 'RESULTADOBUSCA' ---
-// Ele sabe como ler e exibir o JSON da sua API Python
 const AnalysisResult = ({ analysisData, error }) => {
     if (error) {
         return <p className="error-message centralizado">Erro: {error}</p>;
@@ -56,19 +53,19 @@ const AnalysisResult = ({ analysisData, error }) => {
             <div className="analysis-card">
                 <header className="analysis-header">
                     <div className="author-info">
-                        <h2>{analysisData.author_name}</h2>
+                        <h2 style={{ fontSize: '2.8rem' }}>{analysisData.author_name}</h2>
                         <p><strong>Final Score:</strong> {analysisData.final_score} | <strong>Confidence:</strong> {analysisData.confidence_score}</p>
                     </div>
                     <div className={`rating-badge rating-${analysisData.final_rating.toLowerCase()}`}>
-                        {analysisData.final_rating}
+                        <strong style={{ fontSize: '2.0rem' }}>{analysisData.final_rating}</strong>
                     </div>
                 </header>
                 <div className="caixa-simples">
-                    <h3>Summary of the Analysis</h3>
+                    <h3 style={{ fontSize: '2.0rem' }}>Summary of the Analysis</h3>
                     <p>{analysisData.summary}</p>
                 </div>
                 <div className="caixa-simples">
-                    <h3>More details</h3>
+                    <h3 style={{ fontSize: '2.0rem' }}>More details</h3>
                     <div className="breakdown-grid">
                         {Object.entries(analysisData.breakdown).map(([key, value]) => (
                             <div className="breakdown-item" key={key}>
@@ -87,15 +84,12 @@ const AnalysisResult = ({ analysisData, error }) => {
 };
 
 
-// Seu componente Projects, que agora serve como conteúdo inicial (mantido)
+// Componente Projects, serve como conteúdo inicial 
 const Projects = () => {
-  // A lógica de fetch foi mantida, caso você queira usar um json-server para exemplos.
-  // Se não precisar, pode remover a lógica e deixar um conteúdo estático.
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula um carregamento de exemplos ou instruções
     setTimeout(() => {
         setLoading(false);
     }, 500);
@@ -113,7 +107,6 @@ const Projects = () => {
   );
 };
 
-// Seu Footer personalizado (mantido)
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
@@ -124,10 +117,9 @@ const Footer = () => {
   );
 };
 
-// --- APP PRINCIPAL COM A LÓGICA CORRETA ---
+
 function App() {
   const [idBusca, setIdBusca] = useState('');
-  // Estado renomeado para refletir o que ele guarda: a análise
   const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -148,7 +140,7 @@ function App() {
         const errorData = await response.json().catch(() => ({ error: 'Erro ao processar a resposta do servidor.' }));
         throw new Error(errorData.error || `Erro ${response.status}`);
       }
-      // AGORA USAMOS .json() CORRETAMENTE
+
       const data = await response.json();
       setAnalysisResult(data);
     } catch (err) {
@@ -168,7 +160,7 @@ function App() {
           onBuscaSubmit={handleBusca}
           loading={loading}
         />
-        {/* LÓGICA DE RENDERIZAÇÃO ATUALIZADA */}
+        {/* LÓGICA DE RENDERIZAÇÃO */}
         {error ? <p className="error-message centralizado">Erro: {error}</p> : (
           analysisResult ? <AnalysisResult analysisData={analysisResult} /> : <Projects />
         )}

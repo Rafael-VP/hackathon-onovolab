@@ -11,26 +11,25 @@
   --bg-header: #005678;
   --bg-footer: #005678;
   /* Text */
-  --text-dark: #ffffff; /* Usado no header */
-  --text-light: #005678; /* Cor principal do texto no gradiente */
+  --text-dark: #ffffff; 
+  --text-light: #005678; 
   --text-logo: #ffffff;
   --text-nav-links: #ffffff;
 
   /* Accent Colors*/
-  --accent-gradient-start: #ffffff; /* COR DE BAIXO (INÍCIO) */
-  --accent-gradient-end: #74e5ff;   /* COR DE CIMA (FIM) */
+  --accent-gradient-start: #ffffff; 
+  --accent-gradient-end: #74e5ff;  
   --accent-button: #005678;
   --accent-button-hover: #00445f;
   --accent-hover-header: #74e5ff;
   --accent-footer-link: #74e5ff;
-  /* Cor do texto no centro do background */
   --bg-text: #ffffff;
   
 }
 
 
 /* =======================================
-// Global Styles
+// Styles Globais
 // ======================================= */
 body {
   margin: 0;
@@ -50,7 +49,7 @@ body {
 
 
 /* =======================================
-// Header and Main Content
+// Header e conteúdo principal
 // ======================================= */
 .header {
   background-color: var(--bg-header);
@@ -97,7 +96,7 @@ main {
 
 
 /* =======================================
-// Hero Section
+// Seção Hero
 // ======================================= */
 .hero {
   color: var(--bg-header);
@@ -201,8 +200,8 @@ main {
 }
 
 .cta-button {
-  background-color: var(--accent-button); /* Fundo azul escuro */
-  color: #ffffff; /* Texto branco */
+  background-color: var(--accent-button); 
+  color: #ffffff; 
   border: none;
   padding: 0.8rem 2rem;
   font-size: 1rem;
@@ -218,10 +217,14 @@ main {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* =======================================
+// Caixas
+// ======================================= */
+
 .caixa-simples {
   border: 2px solid #007bff;
   padding: 20px;
-  margin: 20px 0;
+  margin: 20px 100px;
   border-radius: 8px;
   background-color: #f8f9fa;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
