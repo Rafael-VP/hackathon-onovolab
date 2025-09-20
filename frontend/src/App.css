@@ -217,3 +217,19 @@ main {
   transform: translateY(-3px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
+.caixa-simples {
+  border: 2px solid #007bff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.caixa-simples p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+

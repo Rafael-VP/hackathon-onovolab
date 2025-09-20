@@ -20,7 +20,7 @@ const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1>Academic Profile Analyzer</h1>
+	<h1>Academic Profile Analyzer</h1>
         <form onSubmit={onBuscaSubmit} className="hero-busca-form">
           <input
             type="text"
@@ -63,11 +63,11 @@ const AnalysisResult = ({ analysisData, error }) => {
                         {analysisData.final_rating}
                     </div>
                 </header>
-                <div className="analysis-summary">
+                <div className="caixa-simples">
                     <h3>Summary of the Analysis</h3>
                     <p>{analysisData.summary}</p>
                 </div>
-                <div className="analysis-breakdown">
+                <div className="caixa-simples">
                     <h3>More details</h3>
                     <div className="breakdown-grid">
                         {Object.entries(analysisData.breakdown).map(([key, value]) => (
