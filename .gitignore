@@ -1,4 +1,35 @@
+# Python
 env/
+*.pyc
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+*.log
+
+# Project-specific
 .env
 prompt.txt
-node_modules
+
+# React
+# dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# production
+build/
+dist/
+out/
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.vscode/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

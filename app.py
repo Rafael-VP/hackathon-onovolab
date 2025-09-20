@@ -2,6 +2,7 @@ import requests
 import os
 from openai import OpenAI
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 ## GLOBAL CONFIGURATION
@@ -15,6 +16,7 @@ PROMPT_PATH = os.getenv("PROMPT_PATH")
 
 ## SETUP
 app = Flask(__name__)
+CORS(app)
 client = OpenAI(api_key=GPT_KEY)
 try:
     with open(PROMPT_PATH, 'r') as file:
