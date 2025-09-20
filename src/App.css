@@ -1,4 +1,35 @@
-/* Reset básico e fontes */
+/* =========================================
+==      COLOR CONTROL PANEL            ==
+=========================================
+--  Change the hex codes in this section
+--  to easily update the entire site's theme.
+*/
+:root {
+  /* Backgrounds */
+  --bg-header: #005678; /* Fundo do header continua branco */
+  --bg-footer: #005678;
+  /* Text */
+  --text-dark: #ffffff; /* Usado no header */
+  --text-light: #005678; /* Cor principal do texto no gradiente */
+  --text-logo: #ffffff;
+  --text-nav-links: #ffffff;
+
+  /* Accent Colors (The Blues) */
+  --accent-gradient-start: #ffffff; /* COR DE BAIXO (INÍCIO) */
+  --accent-gradient-end: #74e5ff;   /* COR DE CIMA (FIM) */
+  --accent-button: #005678;
+  --accent-button-hover: #00445f;
+  --accent-hover-header: #74e5ff;
+  --accent-footer-link: #74e5ff;
+  /* Cor do texto no centro do background */
+  --bg-text: #ffffff;
+  
+}
+
+
+/* =======================================
+// Global Styles
+// ======================================= */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,17 +37,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f4f7f9;
-  color: #333;
+
+  /* Gradiente aplicado a toda a página, de baixo para cima */
+  background: linear-gradient(to top, var(--accent-gradient-start), var(--accent-gradient-end));
+  /* Cor do texto principal agora é clara para ser legível no gradiente */
+  color: var(--text-light);
 }
 
 .App {
   text-align: center;
+  /* ADDED: Flexbox layout for sticky footer */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o container ocupe toda a altura da tela */
 }
 
-/* Header */
+
+/* =======================================
+// Header and Main Content
+// ======================================= */
 .header {
-  background-color: #ffffff;
+  /* O header mantém seu fundo branco para ficar "por cima" do gradiente */
+  background-color: var(--bg-header);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -27,28 +69,36 @@ body {
   z-index: 1000;
 }
 
+/* ADDED: Rule to make main content area grow */
+main {
+  flex-grow: 1;
+}
+
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--text-logo);
 }
 
 .header nav a {
   margin: 0 1rem;
   text-decoration: none;
-  color: #555;
+  color: var(--text-nav-links);
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .header nav a:hover {
-  color: #007bff;
+  color: var(--accent-hover-header);
 }
 
-/* Seção Hero */
+
+/* =======================================
+// Hero Section
+// ======================================= */
 .hero {
-  background: linear-gradient(to right, #6dd5ed, #2193b0);
-  color: white;
+  /* REMOVED: O fundo foi removido para mostrar o gradiente do body */
+  color: bar(--bg-text); /* Mantém o texto branco e destacado */
   padding: 5rem 2rem;
   display: flex;
   justify-content: center;
@@ -70,8 +120,8 @@ body {
 }
 
 .cta-button {
-  background-color: #ffffff;
-  color: #2193b0;
+  background-color: var(--bg-header); /* Fundo branco */
+  color: #ffffff; /* Texto azul escuro */
   border: none;
   padding: 0.8rem 2rem;
   font-size: 1rem;
@@ -86,7 +136,10 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Seção de Projetos */
+
+/* =======================================
+// Projects Section
+// ======================================= */
 .projects {
   padding: 4rem 2rem;
 }
@@ -94,7 +147,7 @@ body {
 .projects h2 {
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #2c3e50;
+  color: #00445f; /* Título "Meus Projetos" agora é branco */
 }
 
 .projects-grid {
@@ -106,9 +159,12 @@ body {
 }
 
 .project-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  /* CHANGED: Efeito de "vidro fosco" para os cards */
+  background-color: rgba(255, 255, 255, 0.1); /* Fundo branco semi-transparente */
+  backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -117,7 +173,7 @@ body {
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
 }
 
 .project-card img {
@@ -128,18 +184,19 @@ body {
 .project-card h3 {
   font-size: 1.3rem;
   margin: 1rem;
-  color: #34495e;
+  color: #00445f; /* Texto do título do card agora é branco */
 }
 
 .project-card p {
   font-size: 1rem;
   padding: 0 1rem;
-  flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
+  flex-grow: 1;
+  color: var(--text-light); /* Texto da descrição usa a cor clara padrão */
 }
 
 .project-card a {
   display: block;
-  background-color: #007bff;
+  background-color: var(--accent-button);
   color: white;
   text-decoration: none;
   padding: 0.8rem;
@@ -148,18 +205,23 @@ body {
 }
 
 .project-card a:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-button-hover);
 }
 
-/* Rodapé */
+
+/* =======================================
+// Footer
+// ======================================= */
 .footer {
-  background-color: #2c3e50;
-  color: #ecf0f1;
+  /* REMOVED: Fundo removido para mostrar o gradiente do body */
+  background-color: var(--bg-footer);
+  color: var(--bg-text);
   padding: 2rem;
   margin-top: 2rem;
 }
 
 .footer a {
-  color: #6dd5ed;
+  color: var(--accent-footer-link); /* Link do email agora é branco para melhor contraste */
+  font-weight: bold;
   text-decoration: none;
 }
