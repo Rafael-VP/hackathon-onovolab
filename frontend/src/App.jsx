@@ -20,16 +20,16 @@ const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1>Analista de Perfil Acadêmico</h1>
+        <h1>Academic Profile Analyzer</h1>
         <form onSubmit={onBuscaSubmit} className="hero-busca-form">
           <input
             type="text"
             value={idBusca}
             onChange={(e) => setIdBusca(e.target.value)}
-            placeholder="Buscar por ID do Semantic Scholar..."
+            placeholder="Search by ID from Semantic Scholar..."
           />
           <button type="submit" disabled={loading}>
-            {loading ? 'Analisando...' : 'Analisar'}
+            {loading ? 'Analyzing...' : 'Analyze'}
           </button>
         </form>
       </div>
@@ -57,14 +57,14 @@ const AnalysisResult = ({ analysisData, error }) => {
                 <header className="analysis-header">
                     <div className="author-info">
                         <h2>{analysisData.author_name}</h2>
-                        <p><strong>Pontuação Final:</strong> {analysisData.final_score} | <strong>Confiança:</strong> {analysisData.confidence_score}</p>
+                        <p><strong>Final Score:</strong> {analysisData.final_score} | <strong>Confidence:</strong> {analysisData.confidence_score}</p>
                     </div>
                     <div className={`rating-badge rating-${analysisData.final_rating.toLowerCase()}`}>
                         {analysisData.final_rating}
                     </div>
                 </header>
                 <div className="analysis-summary">
-                    <h3>Resumo da Análise</h3>
+                    <h3>Summary of the Analysis</h3>
                     <p>{analysisData.summary}</p>
                 </div>
                 <div className="analysis-breakdown">
@@ -105,9 +105,10 @@ const Projects = () => {
 
   return (
     <section id="projects" className="projects">
-      <h2>Como Funciona</h2>
-      <p>Insira o ID de um pesquisador do Semantic Scholar no campo de busca acima.<br/>Nossa IA analisará os padrões de publicação e citação para gerar uma avaliação de impacto e coerência.</p>
-      <p style={{fontWeight: 'bold'}}>Tente buscar por IDs como '1743905' (D. Sculley) ou '145896939' (Geoffrey Hinton).</p>
+      <h2>How It Works</h2>
+      <p>Enter a Semantic Scholar researcher ID in the search field above. <br />
+	  Our AI will analyze publication and citation patterns to generate an assessment of impact and consistency.</p>
+      <p style={{fontWeight: 'bold'}}>Try searching for IDs like '1743905' (D. Sculley) or '145896939' (Geoffrey Hinton).</p>
     </section>
   );
 };
@@ -118,7 +119,7 @@ const Footer = () => {
   return (
     <footer id="contact" className="footer">
       <p> Hackathon Raia by .monks </p>  
-      <p>&copy; {currentYear} Kernel Panic. Todos os direitos reservados.</p>
+      <p>&copy; {currentYear} Kernel Panic. All rights reserved.</p>
     </footer>
   );
 };
