@@ -14,7 +14,7 @@ const Header = () => {
   );
 };
 
-
+// Componente Hero (parte maior com o campo de busca)
 const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   return (
     <section className="hero">
@@ -35,7 +35,7 @@ const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
     </section>
   );
 };
-
+// Componente para exibir os resultados da análise
 const AnalysisResult = ({ analysisData, error }) => {
     if (error) {
         return <p className="error-message centralizado">Erro: {error}</p>;
@@ -106,7 +106,7 @@ const Projects = () => {
     </section>
   );
 };
-
+// Componente Footer (rodapé)
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
@@ -117,13 +117,13 @@ const Footer = () => {
   );
 };
 
-
+// Componente principal da aplicação (faz a integração de tudo)
 function App() {
   const [idBusca, setIdBusca] = useState('');
   const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  // Função para lidar com a submissão do formulário de busca
   const handleBusca = async (event) => {
     event.preventDefault();
     if (!idBusca.trim()) {
@@ -149,7 +149,7 @@ function App() {
       setLoading(false);
     }
   };
-
+ // Renderização do componente principal
   return (
     <div className="App">
       <Header />
