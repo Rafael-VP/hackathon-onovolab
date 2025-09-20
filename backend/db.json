@@ -1,0 +1,7 @@
+{
+  "projects": [
+    { "id": 1, "title": "Projeto 1 do Hackathon" },
+    { "id": 2, "title": "Projeto 2 do Hackathon" }
+  ],
+  "contacts": []
+}
