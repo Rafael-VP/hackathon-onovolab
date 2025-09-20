@@ -67,7 +67,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 40px;
+  height: 50px;
 }
 
 /* ADDED: Rule to make main content area grow */
@@ -76,9 +76,13 @@ main {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--text-logo);
+  padding: 10px 25px; /* Aumentei um pouco o padding lateral para a elipse ficar mais larga */
+  border-radius: 50%; /* CHANGED: Isso força o container a ter o formato de uma elipse */
+  background: radial-gradient(ellipse, #00445f 65%, #005678 80%);
+  /* Adicionado para garantir que a imagem fique perfeitamente centrada na elipse */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ADD THIS NEW RULE */
