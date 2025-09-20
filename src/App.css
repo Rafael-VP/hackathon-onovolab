@@ -67,7 +67,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 50px;
+  height: 40px;
 }
 
 /* ADDED: Rule to make main content area grow */
@@ -86,7 +86,7 @@ main {
 
 /* ADD THIS NEW RULE */
 .logo img {
-  height: 50px; /* Adjust this value to get the size you want */
+  height: 40px; /* Adjust this value to get the size you want */
   width: auto; /* This keeps the image from stretching */
 }
 
