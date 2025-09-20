@@ -141,7 +141,7 @@ function App() {
     setError(null);
     setProjetoEncontrado(null);
     try {
-      const response = await fetch(`http://localhost:3001/projects/${idBusca}`);
+      const response = await fetch(`http://localhost:5000/researcher/${idBusca}`);
       if (!response.ok) {
         throw new Error('Projeto não encontrado. Verifique o ID.');
       }
