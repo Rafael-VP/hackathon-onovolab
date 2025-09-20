@@ -28,7 +28,7 @@ const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
             type="text"
             value={idBusca}
             onChange={(e) => setIdBusca(e.target.value)}
-            placeholder="Buscar projeto por ID..."
+            placeholder="Buscar projeto por ID (Semantic Scholar)..."
           />
           <button type="submit" disabled={loading}>
             {loading ? 'Buscando...' : 'Buscar'}
@@ -115,6 +115,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <footer id="contact" className="footer">
+      <p> Hackathon Raia by .monks </p>  
       <p>&copy; {currentYear} Kernel Panic. Todos os direitos reservados.</p>
     </footer>
   );
