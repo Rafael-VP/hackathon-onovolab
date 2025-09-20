@@ -145,12 +145,12 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50px;
   background-color: #ffffff;
-  color: var(--bg-text);
+  color: #00445f;
   outline: none;
 }
 
 .hero-busca-form input::placeholder {
-  color: #00445f;
+  color: #307889;
 }
 
 .hero-busca-form button {
