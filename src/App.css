@@ -6,7 +6,7 @@
 */
 :root {
   /* Backgrounds */
-  --bg-header: #005678; /* Fundo do header continua branco */
+  --bg-header: #005678;
   --bg-footer: #005678;
   /* Text */
   --text-dark: #ffffff; /* Usado no header */
@@ -76,10 +76,9 @@ main {
 }
 
 .logo {
-  padding: 10px 25px; /* Aumentei um pouco o padding lateral para a elipse ficar mais larga */
+  padding: 10px 25px; 
   border-radius: 50%; /* CHANGED: Isso força o container a ter o formato de uma elipse */
-  background: radial-gradient(ellipse, #00445f 65%, #005678 80%);
-  /* Adicionado para garantir que a imagem fique perfeitamente centrada na elipse */
+  background: #005678;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,7 +109,7 @@ main {
 .hero {
   /* REMOVED: O fundo foi removido para mostrar o gradiente do body */
   /* CORRIGIDO: de 'bar' para 'var' */
-  color: var(--bg-text); /* Mantém o texto branco e destacado */
+  color: var(--bg-header); /* Mantém o texto branco e destacado */
   padding: 5rem 2rem;
   display: flex;
   justify-content: center;
@@ -145,13 +144,13 @@ main {
   font-size: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #ffffff;
   color: var(--bg-text);
   outline: none;
 }
 
 .hero-busca-form input::placeholder {
-  color: #e0e0e0;
+  color: #00445f;
 }
 
 .hero-busca-form button {
