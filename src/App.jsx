@@ -10,10 +10,6 @@ const Header = () => {
       <div className="logo">
         <img src="/logo.png" alt="Logo do meu portfólio" />
       </div>
-      <nav>
-        <a href="#projects">Projetos</a>
-        <a href="#contact">Contato</a>
-      </nav>
     </header>
   );
 };
@@ -24,8 +20,7 @@ const Hero = ({ idBusca, setIdBusca, onBuscaSubmit, loading }) => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1>Olá, eu sou [Seu Nome]</h1>
-        <p>Desenvolvedor(a) Web apaixonado(a) por criar soluções criativas e funcionais.</p>
+        <h1>Analista de Perfil Acadêmico</h1>
         
         {/* Formulário de busca foi movido para cá */}
         <form onSubmit={onBuscaSubmit} className="hero-busca-form">
@@ -120,8 +115,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <footer id="contact" className="footer">
-      <p>Entre em contato: <a href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a></p>
-      <p>&copy; {currentYear} [Seu Nome]. Todos os direitos reservados.</p>
+      <p>&copy; {currentYear} Kernel Panic. Todos os direitos reservados.</p>
     </footer>
   );
 };
