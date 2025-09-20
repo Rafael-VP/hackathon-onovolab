@@ -1,0 +1,347 @@
+/* =========================================
+==      COLOR CONTROL PANEL            ==
+=========================================
+--  Change the hex codes in this section
+--  to easily update the entire site's theme.
+*/
+:root {
+  /* Backgrounds */
+  --bg-header: #005678; /* Fundo do header continua branco */
+  --bg-footer: #005678;
+  /* Text */
+  --text-dark: #ffffff; /* Usado no header */
+  --text-light: #005678; /* Cor principal do texto no gradiente */
+  --text-logo: #ffffff;
+  --text-nav-links: #ffffff;
+
+  /* Accent Colors (The Blues) */
+  --accent-gradient-start: #ffffff; /* COR DE BAIXO (INÍCIO) */
+  --accent-gradient-end: #74e5ff;   /* COR DE CIMA (FIM) */
+  --accent-button: #005678;
+  --accent-button-hover: #00445f;
+  --accent-hover-header: #74e5ff;
+  --accent-footer-link: #74e5ff;
+  /* Cor do texto no centro do background */
+  --bg-text: #ffffff;
+  
+}
+
+
+/* =======================================
+// Global Styles
+// ======================================= */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Gradiente aplicado a toda a página, de baixo para cima */
+  background: linear-gradient(to top, var(--accent-gradient-start), var(--accent-gradient-end));
+  /* Cor do texto principal agora é clara para ser legível no gradiente */
+  color: var(--text-light);
+}
+
+.App {
+  text-align: center;
+  /* ADDED: Flexbox layout for sticky footer */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o container ocupe toda a altura da tela */
+}
+
+
+/* =======================================
+// Header and Main Content
+// ======================================= */
+.header {
+  /* O header mantém seu fundo branco para ficar "por cima" do gradiente */
+  background-color: var(--bg-header);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 50px;
+}
+
+/* ADDED: Rule to make main content area grow */
+main {
+  flex-grow: 1;
+}
+
+.logo {
+  padding: 10px 25px; /* Aumentei um pouco o padding lateral para a elipse ficar mais larga */
+  border-radius: 50%; /* CHANGED: Isso força o container a ter o formato de uma elipse */
+  background: radial-gradient(ellipse, #00445f 65%, #005678 80%);
+  /* Adicionado para garantir que a imagem fique perfeitamente centrada na elipse */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ADD THIS NEW RULE */
+.logo img {
+  height: 50px; /* Adjust this value to get the size you want */
+  width: auto; /* This keeps the image from stretching */
+}
+
+.header nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: var(--text-nav-links);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.header nav a:hover {
+  color: var(--accent-hover-header);
+}
+
+
+/* =======================================
+// Hero Section
+// ======================================= */
+.hero {
+  /* REMOVED: O fundo foi removido para mostrar o gradiente do body */
+  /* CORRIGIDO: de 'bar' para 'var' */
+  color: var(--bg-text); /* Mantém o texto branco e destacado */
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* NOVO: Estilos para o formulário de busca dentro do Hero */
+.hero-busca-form {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.hero-busca-form input {
+  width: 300px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--bg-text);
+  outline: none;
+}
+
+.hero-busca-form input::placeholder {
+  color: #e0e0e0;
+}
+
+.hero-busca-form button {
+  background-color: var(--bg-header);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-busca-form button:hover {
+  background-color: var(--accent-button-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.hero-busca-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+/* =======================================
+// Projects Section
+// ======================================= */
+.projects {
+  padding: 4rem 2rem;
+}
+
+.projects h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #00445f;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  /* CHANGED: Efeito de "vidro fosco" para os cards */
+  background-color: rgba(255, 255, 255, 0.1); /* Fundo branco semi-transparente */
+  backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+}
+
+.project-card h3 {
+  font-size: 1.3rem;
+  margin: 1rem;
+  color: #00445f;
+}
+
+.project-card p {
+  font-size: 1rem;
+  padding: 0 1rem;
+  flex-grow: 1;
+  color: var(--text-light); /* Texto da descrição usa a cor escura */
+}
+
+.project-card a {
+  display: block;
+  background-color: var(--accent-button);
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.project-card a:hover {
+  background-color: var(--accent-button-hover);
+}
+
+
+/* NOVO: Estilos para a seção de resultado da busca */
+.resultado-busca-container {
+    padding: 2rem 2rem 4rem; /* Menos padding no topo para ficar mais próximo da busca */
+}
+
+.resultado-busca-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #00445f;
+}
+
+.projeto-encontrado-card {
+  /* REUTILIZANDO O ESTILO DE VIDRO FOSCO PARA CONSISTÊNCIA */
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+}
+
+.projeto-encontrado-card h4 {
+  font-size: 1.5rem;
+  color: #00445f;
+  margin-top: 0;
+}
+
+.projeto-encontrado-card p {
+  color: var(--text-light);
+}
+
+.projeto-encontrado-card a {
+  display: inline-block;
+  background-color: var(--accent-button);
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.projeto-encontrado-card a:hover {
+  background-color: var(--accent-button-hover);
+}
+
+.error-message {
+  color: #c0392b; /* Um vermelho mais escuro para contraste */
+  font-weight: bold;
+}
+
+.error-message.centralizado {
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+
+/* =======================================
+// Footer
+// ======================================= */
+.footer {
+  /* REMOVED: Fundo removido para mostrar o gradiente do body */
+  background-color: var(--bg-footer);
+  color: var(--bg-text);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.footer a {
+  color: var(--accent-footer-link); /* Link do email agora é claro para melhor contraste */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Removendo regra do CTA-Button que não é mais necessária */
+.cta-button {
+  background-color: var(--accent-button); /* Fundo azul escuro */
+  color: #ffffff; /* Texto branco */
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--accent-button-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}

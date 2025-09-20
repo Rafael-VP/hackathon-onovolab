@@ -1,3 +1,4 @@
 env/
 .env
 prompt.txt
+node_modules
