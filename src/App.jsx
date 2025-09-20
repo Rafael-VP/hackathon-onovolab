@@ -5,7 +5,9 @@ import './App.css'; // Vamos criar este arquivo para os estilos
 const Header = () => {
   return (
     <header className="header">
-      <div className="logo">Meu Portfólio</div>
+      <div className="logo">
+        <img src="/logo.png" alt="Logo do meu portfólio" />
+      </div>
       <nav>
         <a href="#projects">Projetos</a>
         <a href="#contact">Contato</a>
